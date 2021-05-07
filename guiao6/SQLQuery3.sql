@@ -1,0 +1,32 @@
+-- a)
+-- select * from authors
+-- b)
+-- select au_fname,au_lname,phone from authors
+-- c)
+-- select au_fname,au_lname,phone from authors ORDER BY au_fname,au_lname
+-- d)
+--select au_fname AS first_name,au_lname AS last_name,phone AS telephone from authors ORDER BY au_fname,au_lname
+-- e)
+-- select state,au_fname AS first_name,au_lname AS last_name,phone AS telephone from authors WHERE au_lname != 'Ringer' AND state = 'CA' ORDER BY au_fname,au_lname
+-- f)
+-- select pub_name from publishers WHERE pub_name LIKE '%Bo%'
+-- g)
+-- select pub_name,type from (publishers JOIN titles ON type = 'Business')
+-- h)
+-- select pub_name,Sum(qty) AS Total_Sales from ((publishers JOIN titles ON publishers.pub_id = titles.pub_id)JOIN sales ON titles.title_id=sales.title_id) GROUP BY pub_name
+-- i)
+-- select pub_name,title,Sum(qty) AS Total_Sales from ((publishers JOIN titles ON publishers.pub_id = titles.pub_id)JOIN sales ON titles.title_id=sales.title_id) GROUP BY pub_name,title
+-- j)
+-- select stor_name,title from ((stores JOIN sales ON stores.stor_id=sales.stor_id)JOIN titles ON sales.title_id= titles.title_id) WHERE stor_name = 'Bookbeat'
+-- k)
+-- select au_lname,au_fname from ((authors JOIN titleauthor ON authors.au_id=titleauthor.au_id)JOIN titles ON titleauthor.title_id= titles.title_id) GROUP BY au_lname,au_fname HAVING COUNT(type)>1
+-- l)
+-- select title,type,pub_id,AVG(price) AS average_price from titles JOIN sales ON titles.title_id=sales.title_id GROUP BY type,pub_id,title
+-- m)
+-- select type from titles GROUP BY type HAVING MAX(advance) > 1.5 *AVG(advance)
+-- n)
+--select au_fname, au_lname, title, ((ytd_sales * price * royalty * royaltyper) / (100 * 100)) AS valor_arrecadado
+--from ((authors JOIN titleauthor ON authors.au_id=titleauthor.au_id)JOIN titles ON titles.title_id=titleauthor.title_id)
+-- s)
+-- select title from titles WHERE title_id NOT IN (SELECT title_id from sales LEFT JOIN stores ON sales.stor_id=stores.stor_id WHERE stor_name='Bookbeat')
+

@@ -1,0 +1,16 @@
+-- 5.2 a)
+-- π nome,nif (σ fornecedor=null ((fornecedor) ⟕ nif=fornecedor (encomenda)))
+
+-- 5.2 b)
+-- temp_units = γ codProd; avg(unidades) -> AvgUnits (item)
+-- π nome,AvgUnits ((produto) ⨝ codigo=codProd (temp_units)) 
+
+-- 5.2 c)
+-- temp_count_produtos = γ numEnc; count(codProd) -> num_produtos (item)
+-- γ avg(num_produtos) -> avg_produtos (temp_count_produtos)
+
+-- 5.2 d)
+-- temp_items = (item) ⨝ numEnc=numero (encomenda)
+-- temp_products = (produto) ⨝ codigo=codProd (temp_items)
+-- γ codProd,fornecedor; sum(item.unidades) -> total_units (temp_products)
+
