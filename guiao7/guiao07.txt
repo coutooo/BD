@@ -1,0 +1,321 @@
+﻿
+
+7.1)
+
+Atributos
+
+Titulo Livro - A
+Nome Autor - B
+Afiliacao_Autor - C
+Tipo_Livro - D
+Preco - E
+NoPaginas - F
+Editor - G
+Endereco_Editor - H
+Ano_Publicao - I
+
+Relação
+
+Livro={A, B, C, D, E, F, G, H, I}
+
+Chaves={A, B}
+
+Dependências Funcionais
+
+F={	{A, B} -> {G, D, F, I},
+	{D, F} -> {E},
+	{B} -> {C},
+	{G} -> {H} }
+
+7.1 - a)
+
+Encontra-se na 1FN visto ter atributos atómicos e não existir nested relations. Não se encontra na 2FN já que existem dependências parciais.
+
+7.1 - b)
+
+Para 2FN
+
+-> Decompor as dependências parciais
+
+Livro1={A, B, D, E, F, G, H, I}
+
+Livro2={B, C}
+
+Para 3FN
+
+-> Decompor as dependências transitivas
+
+Livro1={A, B, D, F, G, I}
+
+Livro2={B, C}
+
+Livro3={D, F, E}
+
+Livro4={G, H}
+
+
+7.2)
+
+Relação
+
+R={A, B, C, D, E, F, G, H, I, J}
+
+Dependências Funcionais
+
+F={ 	{A, B} -> {C}, 
+	{A} -> {D, E},
+	{B} -> {F},
+	{F} -> {G, H},
+	{D} -> {I, J} }
+
+7.2 - a)
+
+Chave de R é o conjunto {A, B} já que determinam de forma direta ou indireta o maior número de atributos.
+
+7.2 - b)
+
+Para 1FN
+
+-> Decompor relação em atributos atómicos e sem nested relations
+
+R já se encontra na 1FN visto ter atributos atómicos e não existir nested relations.
+
+Para 2FN
+
+-> Decompor as dependências parciais
+
+R1={A, B, C}
+
+R2={A, D, E, I, J}
+
+R3={B, F, G, H}
+
+Para 3FN
+
+-> Decompor as dependências transitivas
+
+R1={A, B, C}
+
+R2={A, D, E}
+
+R3={B, F}
+
+R4={F, G, H}
+
+R5={D, I, J}
+
+
+7.3)
+
+Relação
+
+R={A, B, C, D, E}
+
+Depedéncias Funcionais
+
+F={	{A, B} -> {C, D, E},
+	{D} -> {E}, 
+	{C} -> {A} }
+
+7.3 - a)
+
+Chave de R é o conjunto {A, B} já que determinam de forma direta ou indireta o maior número de atributos.
+
+7.3 - b)
+
+Para 1FN
+
+-> Decompor relação em atributos atómicos e sem nested relations
+
+R já se encontra na 1FN visto ter atributos atómicos e não existir nested relations.
+
+Para 2FN
+
+-> Decompor as dependências parciais
+
+R1={A, B, C, D, E}
+
+R1 já se encontra na 2FN visto que todos os atributos não chave dependem diretamente ou indiretamente da chave inteira e não de parte dela.
+
+
+Para 3FN
+
+-> Decompor as dependências transitivas
+
+R1={A, B, C, D, E}
+
+R1 já se contra na 3FN visto não existir dependências transitivas parciais já que todos os atributos não chave dependem diretamente ou indiretamente da chave inteira e não de parte dela.
+
+Para BCNF
+
+-> Decompor em dependências em que todos os atributos são funcionalmente dependentes da chave da relação, de toda a chave e de nada mais.
+
+R1={A, B, C, D}
+
+R2={D, E}
+
+Mantendo-se a dependência {{C} → {A}} de forma a não se perder dependências funcionais importantes.
+
+
+
+
+
+
+
+
+7.4)
+
+Relação
+
+R={A, B, C, D, E}
+
+Depedéncias Funcionais
+
+F={ 	{A, B} → {C, D, E},
+	{A} → {C},
+	{C} → {D} }
+
+7.4 – a)
+
+Chave de R é o conjunto {A, B} já que determinam de forma direta ou indireta o maior número de atributos.
+
+7.4 – b)
+
+Para 1FN
+
+-> Decompor relação em atributos atómicos e sem nested relations
+
+R já se encontra na 1FN visto ter atributos atómicos e não existir nested relations.
+
+Para 2FN
+
+-> Decompor as dependências parciais
+
+R1={A, B, C, D, E}
+
+R1 já se encontra na 2FN visto que todos os atributos não chave dependem diretamente ou indiretamente da chave inteira e não de parte dela.
+
+Para 3FN
+
+-> Decompor as dependências transitivas
+
+R1={A, B, C, D, E}
+
+R1 já se contra na 3FN visto não existir dependências transitivas parciais já que todos os atributos não chave dependem diretamente ou indiretamente da chave inteira e não de parte dela.
+
+Para BCNF
+
+-> Decompor em dependências em que todos os atributos são funcionalmente dependentes da chave da relação, de toda a chave e de nada mais.
+
+R1={A, B, E}
+
+R2={A, C}
+
+R3={C, D}
+
+Perdendo-se a dependência {{A, B} → C} e (indiretamente) {{A, B} → D}.
+
+7.5 – a)
+
+-- i
+-- CREATE VIEW TITULO_AUTOR AS
+-- SELECT au_fname + ' ' + au_lname AS author, title 
+-- FROM ((pubs.dbo.titles JOIN pubs.dbo.titleauthor ON pubs.dbo.titles.title_id=pubs.dbo.titleauthor.title_id)
+-- JOIN pubs.dbo.authors ON pubs.dbo.titleauthor.au_id=pubs.dbo.authors.au_id)
+
+-- ii 
+--CREATE VIEW EDITOR_FUNCIONARIO AS
+--SELECT pub_name, fname, lname
+--FROM (pubs.dbo.publishers JOIN pubs.dbo.employee 
+--ON pubs.dbo.publishers.pub_id=pubs.dbo.employee.pub_id)
+
+-- iii
+
+--CREATE VIEW LOJAS_TITULOS AS
+--SELECT stor_name, title 
+--FROM ((pubs.dbo.stores JOIN pubs.dbo.sales ON pubs.dbo.stores.stor_id=pubs.dbo.sales.stor_id)
+--JOIN pubs.dbo.titles ON pubs.dbo.sales.title_id=pubs.dbo.titles.title_id)
+
+-- iv
+
+--CREATE VIEW BUSINESS AS
+--SELECT title
+--FROM pubs.dbo.titles 
+--WHERE pubs.dbo.titles.type='Business'
+--WITH CHECK OPTION
+
+7.5 – b)
+
+-- i
+--SELECT title FROM TITULO_AUTOR WHERE author LIKE '%Albert%';
+
+--ii
+--SELECT fname, lname FROM EDITOR_FUNCIONARIO WHERE pub_name = 'Binnet & Hardley';
+
+-- iii
+--SELECT * FROM LOJAS_TITULOS;
+
+-- iv
+--SELECT * FROM BUSINESS;
+
+7.5 – c)
+
+--CREATE VIEW LOJAS_AUTORES AS
+--SELECT stor_name, author
+--FROM LOJAS_TITULOS JOIN TITULO_AUTOR ON LOJAS_TITULOS.title=TITULO_AUTOR.title;
+
+--SELECT * FROM LOJAS_AUTORES;
+
+
+
+
+
+7.5 – d)
+
+--i
+
+A query não é bem sucedida visto que o tipo de livro não é “Business” devido à opção “WITH CHECK OPTION” descrita na view.
+
+--ii
+
+--CREATE VIEW BUSINESS AS
+--SELECT title
+--FROM pubs.dbo.titles 
+--WHERE pubs.dbo.titles.type='Business'
+
+--iii
+
+A query é bem sucedida.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
