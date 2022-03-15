@@ -24,7 +24,7 @@ namespace Motoshop
 
         public void initSGBDConnection()
         {
-            cn = new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;initial catalog=p2g5;User ID=p2g5;Password=conas@bd5");
+            cn = new SqlConnection("data source= ////falta/////////////");
             // ALTERAR AQUI PARA CADA PC.
             //cn = new SqlConnection("data source= FÁBIO-TP\\SQLEXPRESS;integrated security=true;initial catalog=MOTOSHOP");
             //cn = new SqlConnection("data source=DESKTOP-BCIC2SB\\SQLEXPRESS;integrated security=true;initial catalog=MOTOSHOP");
